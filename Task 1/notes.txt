@@ -1,0 +1,16 @@
+
+Hi Hanlin,*
+*) If the user provides 1 text file, your program should return the corresponding profile
+*) If the user provides 2 text file, your program should compute the two profiles, normalise each, compare the normalised profiles, after which the profiles are no longer required as they are not the point here.
+
+Fair enough?
+
+Cheers
+MichaelW
+
+
+
+
+commas=$(grep -o "," "$File" | wc -l) echo comma "$commas"
+Semicolon=$(grep -o ";" "$File" | wc -l) echo Semi_colon "$Semicolon"
+sentence=$(grep -ow "." "$File" | wc -l) echo sentence "$sentence"
