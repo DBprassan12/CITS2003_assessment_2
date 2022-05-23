@@ -105,3 +105,12 @@ done
     [A-Za-z]+(?:-+[A-Za-z]+)
 
     \b[A-Za-z]+(?:-+[A-Za-z]+)+\b
+
+
+
+
+while read line; do
+    for word in $line; do
+        echo $word
+    done
+done < file | wc -l
