@@ -12,6 +12,7 @@ do
         File="$var"
 
 
+
 MakeProfile=$(
     
 sed 's/[-?!".,]//g' "$File"  > tempText.txt
@@ -58,11 +59,39 @@ if (( $# < 2 )); then
       echo "$MakeProfile" |sort > "$NewprofileName"
 
 
-
-
-
 elif (( $# < 3 )); then
       echo "$MakeProfile" |sort > "$NewprofileName"
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

@@ -3,16 +3,8 @@
 #!/bin/sh
 
 
-if (( $# < 2 )); then
-
-      echo "$MakeProfile" |sort > "$NewprofileName"
-
-
-
-fi
-
-
-
-  
-
-fi
+args=()
+for i in "$@"; do
+    args+=("$i")
+done
+echo "${args[@]}"
