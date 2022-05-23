@@ -3,12 +3,13 @@
 for var in "$@"
 
 do
-    
+
     if [[ -f $var ]] 
+
     then
-        FindFileName=$( echo $1 | rev | cut -d '.' -f2 | cut -d '/' -f1 | rev)
+        FindFileName=$( echo $var | rev | cut -d '.' -f2 | cut -d '/' -f1 | rev)
         NewprofileName=$(echo "$FindFileName"_profile.txt)
-        File="$1"
+        File="$var"
 
 
 MakeProfile=$(
@@ -53,21 +54,23 @@ rm RemovedDoubleHyphenText.txt | rm Findcompound_word.txt | rm tempText.txt
 )
 
 
-
-
 if (( $# < 2 )); then
-
       echo "$MakeProfile" |sort > "$NewprofileName"
 
+
+
+
+
+elif (( $# < 3 )); then
+      echo "$MakeProfile" |sort > "$NewprofileName"
+
+
+
+else echo error
+
 fi
 
-
-
-  
-
 fi
-
-
 
 
 
