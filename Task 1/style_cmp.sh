@@ -94,22 +94,38 @@ then
 
     done
 
+
+
+
+
+
+
+
+
     TextFile=$(for file in $profile_Files;do echo $file ;done)
+        
+    FindFileName=$(for file in $profile_Files; do echo  $file | rev | cut -d '.' -f1-10 | cut -d '/' -f1-10 | rev  ; done)
+        
+    echo "$NewFileName"
+
+
+
+
+
 
     merge=$( awk 'FNR==NR{a[$1]=$2 FS $3;next}{ print $0, a[$1]}' $TextFile )
 
-    echo "$merge" > final.txt
+    echo "$merge" > "final.txt"
 
     ff=$(awk '{ print $1 , $4=($3*$3)-($2-$2)}' final.txt )
-    echo "$ff" > final.txt
-
+    echo "$ff" > "final.txt"
     
     ff=$(awk '{ print $1 , $2=sqrt($2)}' final.txt )
-    echo "$ff" > final.txt
+    echo "$ff" > "final.txt"
 
 
     ss=$(awk '{ sum+=$2} END {print sum/27}' final.txt)
-    echo The Euclidian Distance between the two texts is: "$ss" >> final.txt
+    echo The Euclidian Distance between the two texts is: "$ss" >> "final.txt"
 
 
 

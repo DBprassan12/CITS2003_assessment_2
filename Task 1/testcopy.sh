@@ -1,6 +1,6 @@
-z=`echo "sqrt (3)" | bc -l`
-
-echo $z
+for file in $profile_Files
+do
+done
 
 
 
