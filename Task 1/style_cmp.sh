@@ -1,7 +1,13 @@
 #!/bin/bash
 
-File="./sample/sample2.txt"
+File="./sample/sample1.txt"
 
+
+
+
+
+MakeProfile=$(
+    
 sed 's/[-?!".,]//g' "$File"  > tempText.txt
 WordCount=$(  wc -w  tempText.txt |  cut -d ' ' -f1  )
 echo Words "$WordCount"
@@ -41,6 +47,16 @@ echo compound_word "$compound"
 
 
 rm RemovedDoubleHyphenText.txt | rm Findcompound_word.txt | rm tempText.txt
+
+)
+
+
+
+
+
+
+
+echo "$MakeProfile"|sort 
 
 
 
