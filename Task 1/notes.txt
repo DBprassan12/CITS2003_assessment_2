@@ -146,3 +146,11 @@ if (( $# < 2 )); then
     fi
 
 fi
+
+
+
+
+
+    The counts for each of the conjunctions, comma, semi_colon, compound_word and contraction be normalised by dividing by the overall word count and multiplying by 1,000, to give count per 1,000 words.
+    The count of words will be ignored.
+    The count of sentences will be replaced by the number of words divided by the number of sentences, to give words per sentence. 

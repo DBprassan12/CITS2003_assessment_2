@@ -1,5 +1,7 @@
 #!/bin/bash
 
+mkdir tempFolder
+
 for var in "$@"
 
 do
@@ -10,8 +12,6 @@ do
         FindFileName=$( echo $var | rev | cut -d '.' -f2 | cut -d '/' -f1 | rev)
         NewprofileName=$(echo "$FindFileName"_profile.txt)
         File="$var"
-
-
 
         MakeProfile=$(
 
@@ -42,70 +42,56 @@ do
             echo semi_colon "$semi_colon"
 
             contraction=$(grep -E -i -o  "[a-z]'[a-z]+" "$File" | grep -Ev 's' | wc -l)
-echo contraction "$contraction"
+            echo contraction "$contraction"
 
-WordCount=$(  wc -w  tempText.txt |  cut -d ' ' -f1  )
-echo Words "$WordCount"
+            WordCount=$(  wc -w  tempText.txt |  cut -d ' ' -f1  )
+            echo Words "$WordCount"
 
-compound=$( cat "Findcompound_word.txt" | sed 's/[?!".,]//g'  | tr ' ' '\n' | sort | grep - | wc -l)
-echo compound_word "$compound"
+            compound=$( cat "Findcompound_word.txt" | sed 's/[?!".,]//g'  | tr ' ' '\n' | sort | grep - | wc -l)
+            echo compound_word "$compound"
+
+            rm RemovedDoubleHyphenText.txt | rm Findcompound_word.txt | rm tempText.txt
+        )
 
 
-rm RemovedDoubleHyphenText.txt | rm Findcompound_word.txt | rm tempText.txt
-)
-
-
-if (( $# < 2 )); then
+if (( $# == 1 )); then
       echo "$MakeProfile" |sort > "$NewprofileName"
 
 
-elif (( $# < 3 )); then
-      echo "$MakeProfile" |sort > "$NewprofileName"
+elif (( $# == 2 )); then
 
+      echo "$MakeProfile" |sort > ./tempFolder/"$NewprofileName"
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-else echo error
+else echo incorrect input 
 
 fi
 
 fi
-
-
 
 done
 
 
+if (( $# == 2 )); then
+    
+    profile_Files="./tempFolder/*.txt"
+    for f in $profile_Files
+    do
+        echo $f 
+
+
+
+
+
+
+
+    done
+    rm -rf tempFolder
+
+
+
+
+
+fi
 
 
 
