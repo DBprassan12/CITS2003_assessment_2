@@ -1,20 +1,6 @@
-#!/bin/bash
+z=`echo "sqrt (3)" | bc -l`
 
-#!/bin/sh
+echo $z
 
 
-if (( $# == 2 )); then
-    
-    PortFiles="./tempFolder/*.txt"
-    
-    
-    for f in $PortFiles
-    do
-        echo "Processing $f file..."
-        
-    done
-    
-    
-    rm -rf tempFolder
-    
-fi
+

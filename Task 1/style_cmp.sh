@@ -2,6 +2,7 @@
 
 mkdir tempFolder
 
+
 for var in "$@"
 
 do
@@ -34,7 +35,6 @@ do
             sentences=$(($fullStop + $questionMark + $exclamationMark ))
             echo sentences "$sentences"
 
-
             commas=$(grep -o "," "$File" | wc -l)
             echo comma "$commas"
 
@@ -56,13 +56,12 @@ do
 
 if (( $# == 1 )); then
       echo "$MakeProfile" |sort > "$NewprofileName"
+      rm -rf tempFolder
 
 
 elif (( $# == 2 )); then
-
       echo "$MakeProfile" |sort > ./tempFolder/"$NewprofileName"
-
-else echo incorrect input 
+else echo incorrect input
 
 fi
 
@@ -70,66 +69,51 @@ fi
 
 done
 
+if (( $# == 2 ));
 
-if (( $# == 2 )); then
-    
+then
+
     profile_Files="./tempFolder/*.txt"
-    for f in $profile_Files
+
+    for file in $profile_Files
+
     do
-        echo $f 
+        WordCount=$(awk ' NR==27 {print $2}' $file)
 
+        RemoveSentenceandWord=$( awk 'NR!=17 && NR!=27 {print}' $file)
+        echo "$RemoveSentenceandWord" > "$file"-n.txt
 
+        Norm=$( awk -v c="$WordCount" '{print $1 , $2/c*100}' "$file"-n.txt )
+        echo "$Norm" > "$file"-n.txt
 
+        SentenceNorm=$(awk -v c="$WordCount" ' NR==17 {print $1 , c/$2}' $file)
+        echo "$SentenceNorm" >> "$file"-n.txt
 
-
-
+        sort $file-n.txt > "$file"N.txt
+        rm "$file" | rm $file-n.txt
 
     done
-    rm -rf tempFolder
+
+    TextFile=$(for file in $profile_Files;do echo $file ;done)
+
+    merge=$( awk 'FNR==NR{a[$1]=$2 FS $3;next}{ print $0, a[$1]}' $TextFile )
+
+    echo "$merge" > final.txt
+
+    ff=$(awk '{ print $1 , $4=($3*$3)-($2-$2)}' final.txt )
+    echo "$ff" > final.txt
+
+    
+    ff=$(awk '{ print $1 , $2=sqrt($2)}' final.txt )
+    echo "$ff" > final.txt
+
+
+    ss=$(awk '{ sum+=$2} END {print sum/27}' final.txt)
+    echo The Euclidian Distance between the two texts is: "$ss" >> final.txt
 
 
 
-
+rm -rf tempFolder
 
 fi
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
