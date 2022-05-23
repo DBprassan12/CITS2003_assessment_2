@@ -14,8 +14,6 @@ do
     echo $val $foundInfiles
 done
 
-rm tempText.txt
-
 
 commas=$(grep -o "," "$File" | wc -l)
 echo comma "$commas"
@@ -31,9 +29,19 @@ exclamationMark=$(grep -oc "!" "$File" )
 sentences=$(($fullStop + $questionMark + $exclamationMark ))
 echo sentences "$sentences"
 
+contraction=$(grep -E -i -o  "[a-z]'[a-z]+" "$File" | grep -Ev 's' | wc -l)
+echo contraction "$contraction"
 
-compound_word=$(grep -E -i -o  "[a-z]'[a-z]+" "$File" | grep -Ev 's' | wc -l)
-echo contraction "$compound_word"
+
+
+sed 's/--//g' "$File"  > RemovedDoubleHyphenText.txt
+sed 's/ - //g' "RemovedDoubleHyphenText.txt"  > Findcompound_word.txt
+compound=$( cat "Findcompound_word.txt" | sed 's/[?!".,]//g'  | tr ' ' '\n' | sort | grep - | wc -l)
+echo compound_word "$compound"
+
+
+rm RemovedDoubleHyphenText.txt | rm Findcompound_word.txt | rm tempText.txt
+
 
 
 

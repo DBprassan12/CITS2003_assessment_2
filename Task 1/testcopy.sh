@@ -2,14 +2,15 @@
 
 #!/bin/sh
 
-File="./sample/sample2.txt"
+File="./sample/sample1.txt"
+
+sed 's/--//g' "$File"  > RemovedDoubleHyphenText.txt
+sed 's/ - //g' "RemovedDoubleHyphenText.txt"  > Findcompound_word.txt
 
 
-compound_word=$(grep -E -i -o  "[a-z]'[a-z]+" "$File" | grep -Ev 's' | wc -l)
+compound=$( cat "Findcompound_word.txt" | sed 's/[?!".,]//g'  | tr ' ' '\n' | sort | grep - | wc -l)
+
+echo compound_word "$compound"
 
 
-
-
-
-echo contraction "$compound_word"
-
+rm  RemovedDoubleHyphenText.txt | rm Findcompound_word.txt
