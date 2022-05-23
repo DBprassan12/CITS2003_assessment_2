@@ -61,6 +61,9 @@ if (( $# == 1 )); then
 
 elif (( $# == 2 )); then
       echo "$MakeProfile" |sort > ./tempFolder/"$NewprofileName"
+
+
+      
 else echo incorrect input
 
 fi
@@ -68,6 +71,9 @@ fi
 fi
 
 done
+
+
+
 
 if (( $# == 2 ));
 
@@ -117,6 +123,7 @@ then
 rm -rf tempFolder
 
 
+else echo error 
 
 fi
 
