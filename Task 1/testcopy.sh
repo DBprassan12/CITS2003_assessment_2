@@ -2,15 +2,17 @@
 
 #!/bin/sh
 
-File="./sample/sample1.txt"
 
-sed 's/--//g' "$File"  > RemovedDoubleHyphenText.txt
-sed 's/ - //g' "RemovedDoubleHyphenText.txt"  > Findcompound_word.txt
+if (( $# < 2 )); then
 
-
-compound=$( cat "Findcompound_word.txt" | sed 's/[?!".,]//g'  | tr ' ' '\n' | sort | grep - | wc -l)
-
-echo compound_word "$compound"
+      echo "$MakeProfile" |sort > "$NewprofileName"
 
 
-rm  RemovedDoubleHyphenText.txt | rm Findcompound_word.txt
+
+fi
+
+
+
+  
+
+fi

@@ -114,3 +114,35 @@ while read line; do
         echo $word
     done
 done < file | wc -l
+
+
+compound_word=$(grep -E -i -o  "[a-z]'[a-z]+" "aatempText.txt" | grep -Ev 's' | wc -l)
+
+
+
+
+echo compound_word "$compound_word"
+
+
+
+if [[ -f <file1> ]] && [[ -f <file2> ]]
+then
+  echo "They exist!"
+fi
+
+
+
+
+
+if (( $# < 2 )); then
+    
+    if [[ -f $1 ]]
+    then
+        FindFileName=$( echo $1 | rev | cut -d '.' -f2 | cut -d '/' -f1 | rev)
+        NewprofileName=$(echo "$FindFileName"_profile.txt)
+        File="$1"
+
+        echo "$MakeProfile" |sort > "$NewprofileName"
+    fi
+
+fi
